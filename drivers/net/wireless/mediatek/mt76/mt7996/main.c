@@ -446,6 +446,11 @@ static int mt7996_config(struct ieee80211_hw *hw, u32 changed)
 		if (ret)
 			return ret;
 
+		ret = mt7996_mcu_set_pp_en(phy, PP_USR_MODE,
+					   phy->mt76->chandef.punctured);
+		if (ret)
+			return ret;
+
 #if 0
 		if (!mt76_testmode_enabled(phy->mt76) && !phy->mt76->test.bf_en) {
 			ret = mt7996_mcu_edcca_enable(phy, true);
