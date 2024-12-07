@@ -615,9 +615,10 @@ static void __mt7996_configure_filter(struct ieee80211_hw *hw,
 
 	*total_flags = flags;
 
-	//dev_err(dev->mt76.dev, "apply-rxfilter, promisc: %d  rxfilter: 0x%x FIF_CONTROL: 0x%x monitor-vif: %p mon-enabled: %d\n",
-	//	is_promisc, phy->rxfilter, flags & FIF_CONTROL, phy->monitor_vif,
-	//	phy->monitor_enabled);
+	mtk_dbg(&phy->dev->mt76, CFG,
+		"apply-rxfilter, promisc: %d  rxfilter: 0x%x FIF_CONTROL: 0x%x monitor-vif: %p mon-enabled: %d\n",
+		is_promisc, phy->rxfilter, flags & FIF_CONTROL, phy->monitor_vif,
+		phy->monitor_enabled);
 	mt76_wr(dev, MT_WF_RFCR(phy->mt76->band_idx), phy->rxfilter);
 
 	if (is_promisc)
